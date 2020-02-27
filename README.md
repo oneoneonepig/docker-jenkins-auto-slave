@@ -1,6 +1,12 @@
+Modified from [shamil/docker-jenkins-auto-slave](https://github.com/shamil/docker-jenkins-auto-slave)
+
 ## Jenkins auto slave
 
-A docker image of Jenkins `JNLP` based agent. This image can self-register to Jenkins master, it will also unregister from the master when container exits. Another cool feature is that this image doesn't have `agent.jar` pre installed, instead it downloads it from Jenkins master when the container starts. This approach will help to avoid versioning problems that might happen between `master` and `slave`.
+* Current image: [oneoneonepig/jk-slave:0.2](https://hub.docker.com/repository/docker/oneoneonepig/jk-slave)
+* A docker image of Jenkins `JNLP` based agent.
+* This image can self-register to Jenkins master
+* It will also unregister from the master when container exits.
+* `agent.jar` downloaded from Jenkins master when the container starts (avoids versioning problem)
 
 ***
 
@@ -14,66 +20,4 @@ most used variables:
 - `JENKINS_SLAVE_MODE` how Jenkins schedules builds on this node, `NORMAL/EXCLUSIVE` (default is `NORMAL`)
 - `JENKINS_SLAVE_NAME` the name which will be used when registering (default is `$HOSTNAME`)
 - `JENKINS_SLAVE_NUM_EXECUTORS` number of executors to use (defaults to `1`)
-
-less used and can keep the defaults
-
 - `JAVA_OPTS` pass java options to the `slave.jar` process (default is not set)
-
-***
-
-**Required permissions**
-
-The image should be used in trusted environment, even so the permissions for the user that will be used to register the slaves should be restricted.
-
-> **DO NOT USE ADMIN USER**
-
-Therefore, in order to be able to self register to the master, a user with relevant permissions must be created.
-
-The required permissions are:
-
-- `Overall/Read`
-- `Agent/Connect`
-- `Agent/Create`
-- `Agent/Delete`
-
-***
-
-**Running**
-
-when running without any env variables:
-
-```sh
-$ docker run --rm simenduev/jenkins-auto-slave
-please set both JENKINS_URL and JENKINS_AUTH env. variables
-example:
-JENKINS_AUTH=user:password
-JENKINS_URL=http://localhost:8080
-```
-
-the basic working command:
-
-```sh
-$ docker run -d \
-    --net host \
-    -e JENKINS_URL=http://jenkins.internal.domain:8080 \
-    -e JENKINS_AUTH=registrator:1234567890123456789012  \
-    -v /any/path/you/like:/var/jenkins_home \
-    simenduev/jenkins-auto-slave
-```
-
-> Mounting of `/var/jenkins_home` volume is required in order for agent to be able to build jobs.
-
-below command will also permit the slave run docker commands:
-
-```sh
-$ docker run -d \
-    --net host \
-    -e JENKINS_URL=http://jenkins.internal.domain:8080 \
-    -e JENKINS_AUTH=registrator:1234567890123456789012  \
-    -v /any/path/you/like:/var/jenkins_home \
-    -v /run/docker.sock:/run/docker.sock \
-    -v /usr/bin/docker:/usr/bin/docker \
-    simenduev/jenkins-auto-slave
-```
-
-***
