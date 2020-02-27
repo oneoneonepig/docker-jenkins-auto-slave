@@ -1,4 +1,7 @@
+
 Modified from [shamil/docker-jenkins-auto-slave](https://github.com/shamil/docker-jenkins-auto-slave)
+
+**Auto-trigger Docker Hub's build when new tag (numeric + dots) is applied**
 
 ## Jenkins auto slave
 
