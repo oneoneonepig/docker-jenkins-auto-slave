@@ -7,6 +7,7 @@ ARG group=jenkins
 ARG uid=1000
 ARG gid=1000
 ARG git_lfs_version=2.9.1
+ARG helm_version=v2.16.3
 
 ENV JENKINS_HOME=/var/jenkins_home \
     JENKINS_USER=${user}
@@ -19,6 +20,11 @@ RUN apt-get update \
     && curl -#LSo git-lfs.deb https://packagecloud.io/github/git-lfs/packages/debian/stretch/git-lfs_${git_lfs_version}_amd64.deb/download.deb \
     && dpkg -i git-lfs.deb \
     && rm -f git-lfs.deb \
+    \
+    # Install Helm
+    && curl -#LSo helm.tar.gz https://get.helm.sh/helm-${helm_version}-linux-amd64.tar.gz \
+    && tar -zxvf helm.tar.gz \
+    && mv linux-amd64/helm /usr/local/bin/helm \
     \
     # Jenkins is run with user `jenkins`, uid = 1000
     # If you bind mount a volume from the host or a data container,

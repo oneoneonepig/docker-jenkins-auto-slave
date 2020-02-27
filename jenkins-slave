@@ -2,9 +2,6 @@
 #
 DOWNLOAD_DIR=/usr/share/jenkins
 
-: ${DOCKER_GROUP:=docker}
-: ${DOCKER_SOCKET:=/var/run/docker.sock}
-
 : ${JENKINS_HOME:=/var/jenkins_home}
 : ${JENKINS_USER:=jenkins}
 
@@ -28,13 +25,6 @@ jenkins_cli() {
     java -jar "$DOWNLOAD_DIR/cli.jar" -auth "$JENKINS_AUTH" "$@"
 }
 
-# not really used, we use 'jnlpCredentials' instead
-# kept for reference
-get_node_secret() {
-    jenkins_cli groovy = \
-        <<< "println jenkins.model.Jenkins.instance.nodesObject.getNode('$JENKINS_SLAVE_NAME')?.computer?.jnlpMac"
-}
-
 which curl &>/dev/null || {
     echo "please install curl"
     exit 1
@@ -53,13 +43,6 @@ mkdir -p "$DOWNLOAD_DIR"
 download_slave_jar
 download_cli_jar
 
-# if docker socket provided, then
-# allow docker cli to run as jenkins user
-[ -S "$DOCKER_SOCKET" ] && {
-    DOCKER_GID=$(stat -c '%g' "$DOCKER_SOCKET")
-    groupadd -for -g $DOCKER_GID $DOCKER_GROUP
-    usermod -aG $DOCKER_GROUP $JENKINS_USER
-}
 
 # make sure to delete node on exit
 trap 'exit' SIGINT SIGTERM
