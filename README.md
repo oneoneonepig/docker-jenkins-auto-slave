@@ -5,7 +5,7 @@ Modified from [shamil/docker-jenkins-auto-slave](https://github.com/shamil/docke
 
 ## Jenkins auto slave
 
-* Current image: [oneoneonepig/docker-jenkins-auto-slave:1.0.0](https://hub.docker.com/repository/docker/oneoneonepig/docker-jenkins-auto-slave)
+* Current image: [oneoneonepig/docker-jenkins-auto-slave:1.0.0](https://hub.docker.com/r/oneoneonepig/docker-jenkins-auto-slave)
 * A docker image of Jenkins `JNLP` based agent.
 * This image can self-register to Jenkins master
 * It will also unregister from the master when container exits.
