@@ -10,10 +10,9 @@ Modified from [shamil/docker-jenkins-auto-slave](https://github.com/shamil/docke
 
 ***
 
-**Environment variables**
+## Environment variables
 
 most used variables:
-
 - `JENKINS_AUTH` jenkins server username and either password or API token (in `user:secet` format)
 - `JENKINS_URL` jenkins master url (example `http://localhost:8080`)
 - `JENKINS_SLAVE_LABEL` space delimited labels, used to group agents into one logical group (no default)
@@ -21,3 +20,15 @@ most used variables:
 - `JENKINS_SLAVE_NAME` the name which will be used when registering (default is `$HOSTNAME`)
 - `JENKINS_SLAVE_NUM_EXECUTORS` number of executors to use (defaults to `1`)
 - `JAVA_OPTS` pass java options to the `slave.jar` process (default is not set)
+
+## Deployment
+
+```
+kubectl apply -f jenkins-master.yaml
+kubectl apply -f jenkins-master.yaml
+```
+
+## TODO
+[] Same service type for http UI and master jnlp listener, expose as NodePort together, which is unnecessary
+[] Add username and password option during deployment
+[] Pre-install plugins during deployment (or during container packaging)
