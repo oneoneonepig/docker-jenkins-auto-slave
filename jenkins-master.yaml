@@ -18,21 +18,6 @@ spec:
     protocol: TCP
     targetPort: 50000
   type: NodePort
-  #---
-#apiVersion: v1
-#kind: Service
-#metadata:
-#  name: jenkins-master-jnlp
-#  labels:
-#    app: jenkins-master-jnlp
-#spec:
-#  selector:
-#    cicd-master: "true"
-#  ports:
-#  - port: 50000
-#    protocol: TCP
-#    targetPort: 50000
-#  type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -59,3 +44,6 @@ spec:
       containers:
       - name: jenkins
         image: "jenkins/jenkins:lts"
+        env:
+        - name: JENKINS_PASSWORD
+          value: "password"
