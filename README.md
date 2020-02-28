@@ -32,6 +32,6 @@ kubectl apply -f jenkins-master.yaml
 ```
 
 ## TODO
-- [] Same service type for http UI and master jnlp listener, expose as NodePort together, which is unnecessary
-- [] Add username and password option during deployment
-- [] Pre-install plugins during deployment (or during container packaging)
+- [ ] Same service type for http UI and master jnlp listener, expose as NodePort together, which is unnecessary
+- [ ] Add username and password option during deployment
+- [ ] Pre-install plugins during deployment (or during container packaging)
