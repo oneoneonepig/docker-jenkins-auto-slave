@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: jenkins-slave
-        image: oneoneonepig/docker-jenkins-auto-slave:2.16.3
+        image: oneoneonepig/docker-jenkins-auto-slave:v2.16.3
         env:
         - name: JENKINS_AUTH
           value: "admin:admin"
