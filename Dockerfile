@@ -7,7 +7,7 @@ ARG group=jenkins
 ARG uid=1000
 ARG gid=1000
 ARG git_lfs_version=2.9.1
-ARG helm_version=v2.16.3
+ARG helm_version=v2.14.1
 
 ENV JENKINS_HOME=/var/jenkins_home \
     JENKINS_USER=${user}
