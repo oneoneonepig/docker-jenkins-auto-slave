@@ -1,11 +1,13 @@
 
 Modified from [shamil/docker-jenkins-auto-slave](https://github.com/shamil/docker-jenkins-auto-slave)
 
-**Auto-trigger Docker Hub's build when new tag (numeric + dots) is applied**
+**Auto-trigger Docker Hub's build when new tag (numeric&dots || "v" + numeric&dots) is pushed**
 
 ## Jenkins auto slave
 
-* Current image: [oneoneonepig/docker-jenkins-auto-slave:1.0.0](https://hub.docker.com/r/oneoneonepig/docker-jenkins-auto-slave)
+* Existing tags: 
+  - [oneoneonepig/docker-jenkins-auto-slave:1.0.0](https://hub.docker.com/r/oneoneonepig/docker-jenkins-auto-slave) - helm v2.16.3
+  - [oneoneonepig/docker-jenkins-auto-slave:v2.14.1](https://hub.docker.com/r/oneoneonepig/docker-jenkins-auto-slave) - helm v2.14.1
 * A docker image of Jenkins `JNLP` based agent.
 * This image can self-register to Jenkins master
 * It will also unregister from the master when container exits.
