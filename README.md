@@ -1,7 +1,8 @@
 
 Modified from [shamil/docker-jenkins-auto-slave](https://github.com/shamil/docker-jenkins-auto-slave)
 
-**Auto-trigger Docker Hub's build when new tag (numeric&dots || "v" + numeric&dots) is pushed**
+- **Auto-trigger Docker Hub's build when new tag (numeric&dots || "v" + numeric&dots) is pushed** <br>
+- **The tag matches the helm cli version installed**
 
 ## Jenkins auto slave
 
